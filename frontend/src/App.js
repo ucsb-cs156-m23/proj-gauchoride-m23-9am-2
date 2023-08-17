@@ -8,6 +8,7 @@ import RideRequestCreatePage from "main/pages/Ride/RideRequestCreatePage";
 import RideRequestEditPage from "main/pages/Ride/RideRequestEditPage";
 import RideRequestIndexPage from "main/pages/Ride/RideRequestIndexPage";
 import ShiftPage from "main/pages/ShiftPage";
+import RideDashboardIndexPage from "main/pages/RiderDashboard/RideDashboardIndexPage";
 
 
 
@@ -30,6 +31,10 @@ function App() {
         {
           hasRole(currentUser, "ROLE_ADMIN") && <Route exact path="/admin/users" element={<AdminUsersPage />} />
         }
+                {
+          hasRole(currentUser, "ROLE_ADMIN") && <Route exact path="/rider" element={<RideDashboardIndexPage />} />
+        }
+
         {
           (hasRole(currentUser, "ROLE_ADMIN") || hasRole(currentUser, "ROLE_DRIVER") || hasRole(currentUser, "ROLE_RIDER") )&& <Route exact path="/ride/" element={<RideRequestIndexPage />} />
         }
@@ -51,6 +56,7 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER")
         }
+
         <Route exact path="/*" element={<PageNotFound />} />
 
       </Routes>

@@ -74,6 +74,13 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 )
               }
               {
+                hasRole(currentUser, "ROLE_ADMIN") && (
+                  <NavDropdown title="Rider" id="appnavbar-admin-dropdown" data-testid="appnavbar-rider-dropdown" >
+                    <NavDropdown.Item as={Link} to="/rider">Rider Dashboard</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
+              {
                 isParticipant(currentUser) && (
                   <NavDropdown title="Shift" id="appnavbar-shift-dropdown" data-testid="appnavbar-shift-dropdown" >
                     <NavDropdown.Item as={Link} to="/shift/list">Driver shift table</NavDropdown.Item>
