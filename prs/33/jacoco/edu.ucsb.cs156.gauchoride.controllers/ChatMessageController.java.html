@@ -44,7 +44,7 @@ import javax.validation.Valid;
     @PreAuthorize(&quot;hasRole('ROLE_ADMIN') || hasRole('ROLE_DRIVER')&quot;)
     @PostMapping(&quot;/post&quot;)
     public ChatMessage postMessage(
-        @Parameter(name=&quot;content&quot;, description=&quot;String, Time the ride starts HH:MM(A/P)M&quot;, example=&quot;12:30AM&quot;, required = true)
+        @Parameter(name=&quot;content&quot;, description=&quot;The message you want to send&quot;, example=&quot;Hi&quot;, required = true)
         @RequestParam String content
         )
         {
