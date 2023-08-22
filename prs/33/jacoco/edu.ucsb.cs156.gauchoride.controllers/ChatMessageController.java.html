@@ -53,8 +53,8 @@ import javax.validation.Valid;
         
 <span class="fc" id="L54">        message.setUserId(getCurrentUser().getUser().getId());</span>
 <span class="fc" id="L55">        message.setPayload(content);</span>
-        //message.setDm(false);
-        //message.setToUserId(null);
+<span class="fc" id="L56">        message.setDm(false); // future feature; not currently used</span>
+<span class="fc" id="L57">        message.setToUserId(null);  // future feature; not currently used</span>
 
 <span class="fc" id="L59">        ChatMessage savedMessage = chatMessageRepository.save(message);</span>
 
