@@ -90,8 +90,8 @@ import javax.validation.Valid;
         @Parameter(name=&quot;dropoffLocation&quot;, description=&quot;String, Location the ride ends&quot;, example=&quot;South Hall&quot;, required = true)
         @RequestParam String dropoffLocation,
 
-        @Parameter(name=&quot;room&quot;, description=&quot;String, Room number for the dropoffLocation&quot;, example=&quot;1431&quot;, required = true)
-        @RequestParam String room,
+        @Parameter(name=&quot;dropoffRoom&quot;, description=&quot;String, Room number for the dropoffLocation&quot;, example=&quot;1431&quot;, required = true)
+        @RequestParam String dropoffRoom,
 
         @Parameter(name=&quot;course&quot;, description=&quot;String, Course number for the class at the dropoffLocation&quot;, example=&quot;CMPSC 156&quot;, required = true)
         @RequestParam String course
@@ -107,7 +107,7 @@ import javax.validation.Valid;
 <span class="fc" id="L107">        ride.setEndTime(endTime);</span>
 <span class="fc" id="L108">        ride.setPickupLocation(pickupLocation);</span>
 <span class="fc" id="L109">        ride.setDropoffLocation(dropoffLocation);</span>
-<span class="fc" id="L110">        ride.setRoom(room);</span>
+<span class="fc" id="L110">        ride.setDropoffRoom(dropoffRoom);</span>
 <span class="fc" id="L111">        ride.setCourse(course);</span>
 
 <span class="fc" id="L113">        Ride savedRide = rideRepository.save(ride);</span>
@@ -164,7 +164,7 @@ import javax.validation.Valid;
 <span class="fc" id="L164">        ride.setEndTime(incoming.getEndTime());</span>
 <span class="fc" id="L165">        ride.setPickupLocation(incoming.getPickupLocation());</span>
 <span class="fc" id="L166">        ride.setDropoffLocation(incoming.getDropoffLocation());</span>
-<span class="fc" id="L167">        ride.setRoom(incoming.getRoom());</span>
+<span class="fc" id="L167">        ride.setDropoffRoom(incoming.getDropoffRoom());</span>
 <span class="fc" id="L168">        ride.setCourse(incoming.getCourse());</span>
 
 <span class="fc" id="L170">        rideRepository.save(ride);</span>
