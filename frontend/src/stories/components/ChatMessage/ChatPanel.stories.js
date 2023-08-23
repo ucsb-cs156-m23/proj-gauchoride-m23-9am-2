@@ -1,18 +1,16 @@
 import React from 'react';
-import ChatDisplay from "main/components/ChatMessage/ChatDisplay";
 import { apiCurrentUserFixtures } from "fixtures/currentUserFixtures";
 import { systemInfoFixtures } from "fixtures/systemInfoFixtures";
 import { onePagedChatFixtures } from "fixtures/chatMessageFixtures";
 import { rest } from "msw";
+import ChatPanel from 'main/components/ChatMessage/ChatPanel';
 
 export default {
-  title: 'components/ChatDisplay',
-  component: ChatDisplay,
+    title: 'pages/ChatMessage/ChatPanel',
+    component: ChatPanel
 };
 
-const Template = (args) => <ChatDisplay {...args} />;
-
-//const Template = () => <HelpRequestCreatePage storybook={true} />;
+const Template = () => <ChatPanel />;
 
 export const Default = Template.bind({});
 Default.parameters = {
