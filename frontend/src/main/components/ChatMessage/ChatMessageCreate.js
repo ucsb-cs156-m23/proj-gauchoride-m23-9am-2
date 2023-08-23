@@ -13,8 +13,8 @@ export default function RideRequestCreatePage() {
         }
     });
 
-    const onSuccess = (chatMessage) => {
-        toast(`New ChatMessage Created - id: ${chatMessage.id}`);
+    const onSuccess = () => {
+        toast('Message sent');
     }
 
     const mutation = useBackendMutation(

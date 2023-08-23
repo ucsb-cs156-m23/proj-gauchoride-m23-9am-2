@@ -12,6 +12,13 @@ function isParticipant(currentUser) {
   );
 }
 
+function hasChat(currentUser) {
+  return (
+    hasRole(currentUser, "ROLE_ADMIN")
+    || hasRole(currentUser, "ROLE_DRIVER")
+  );
+}
+
 function createRideRequest(currentUser) {
   if (hasRole(currentUser, "ROLE_RIDER") || hasRole(currentUser, "ROLE_ADMIN")) {
     return (<NavDropdown.Item data-testid="appnavbar-ride-create-dropdown" as={Link} to="/ride/create">Request Ride</NavDropdown.Item>)
@@ -89,9 +96,9 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 )
               }
               {
-                hasRole(currentUser, "ROLE_ADMIN" || "ROLE_DRIVER") && (
-                  <NavDropdown title="Chat" id="appnavbar-Chat-dropdown" data-testid="appnavbar-Chat-dropdown" >
-                    <NavDropdown.Item as={Link} to="/chat">Users</NavDropdown.Item>
+                hasChat(currentUser) && (
+                  <NavDropdown title="Chat" id="appnavbar-chat-dropdown" data-testid="appnavbar-chat-dropdown" >
+                    <NavDropdown.Item as={Link} to="/chat">Chat</NavDropdown.Item>
                   </NavDropdown>
                 )
               }

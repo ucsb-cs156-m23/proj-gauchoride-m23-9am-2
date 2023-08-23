@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-function ChatMessageForm({ initialContents, submitAction, buttonLabel = "Create" }) {
+function ChatMessageForm({ initialContents, submitAction, buttonLabel = "Send" }) {
     const navigate = useNavigate();
     
     // Stryker disable all

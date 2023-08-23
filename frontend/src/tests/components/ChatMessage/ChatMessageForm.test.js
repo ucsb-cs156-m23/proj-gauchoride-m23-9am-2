@@ -28,7 +28,7 @@ describe("ChatMessageForm tests", () => {
             </QueryClientProvider>
         );
 
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        expect(await screen.findByText(/Send/)).toBeInTheDocument();
 
         expectedHeaders.forEach((headerText) => {
             const header = screen.getByText(headerText);
@@ -46,7 +46,7 @@ describe("ChatMessageForm tests", () => {
             </QueryClientProvider>
         );
 
-        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        expect(await screen.findByText(/Send/)).toBeInTheDocument();
 
         expectedHeaders.forEach((headerText) => {
             const header = screen.getByText(headerText);

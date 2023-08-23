@@ -8,7 +8,7 @@ import RideRequestCreatePage from "main/pages/Ride/RideRequestCreatePage";
 import RideRequestEditPage from "main/pages/Ride/RideRequestEditPage";
 import RideRequestIndexPage from "main/pages/Ride/RideRequestIndexPage";
 import ShiftPage from "main/pages/ShiftPage";
-import ChatPage from "main/pages/chatPage";
+import ChatPage from "main/pages/ChatPage";
 
 
 
