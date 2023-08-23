@@ -4,7 +4,7 @@ const chatMessageFixtures = {
       {
         "id": 1,
         "userId": 1,
-        "payload": "12:30AM",
+        "payload": "OneMessage",
         "timestamp": "2023-08-18T08:24:30.661204",
         "dm": false,
         "toUserId": null
