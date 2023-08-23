@@ -53,12 +53,10 @@ import javax.validation.Valid;
         
 <span class="fc" id="L54">        message.setUserId(getCurrentUser().getUser().getId());</span>
 <span class="fc" id="L55">        message.setPayload(content);</span>
-<span class="fc" id="L56">        message.setDm(false); // future feature; not currently used</span>
-<span class="fc" id="L57">        message.setToUserId(null);  // future feature; not currently used</span>
 
-<span class="fc" id="L59">        ChatMessage savedMessage = chatMessageRepository.save(message);</span>
+<span class="fc" id="L57">        ChatMessage savedMessage = chatMessageRepository.save(message);</span>
 
-<span class="fc" id="L61">        return savedMessage;</span>
+<span class="fc" id="L59">        return savedMessage;</span>
     }
 
     @Operation(summary = &quot;List all messages&quot;)
@@ -68,8 +66,8 @@ import javax.validation.Valid;
          @Parameter(name=&quot;page&quot;) @RequestParam int page,
          @Parameter(name=&quot;size&quot;) @RequestParam int size
     ) {
-<span class="fc" id="L71">        Page&lt;ChatMessage&gt; messages = chatMessageRepository.findAll(PageRequest.of(page, size, Sort.by(&quot;timestamp&quot;).descending()));</span>
-<span class="fc" id="L72">        return messages;</span>
+<span class="fc" id="L69">        Page&lt;ChatMessage&gt; messages = chatMessageRepository.findAll(PageRequest.of(page, size, Sort.by(&quot;timestamp&quot;).descending()));</span>
+<span class="fc" id="L70">        return messages;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
