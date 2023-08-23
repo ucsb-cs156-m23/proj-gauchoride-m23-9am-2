@@ -88,6 +88,13 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                   </NavDropdown>
                 )
               }
+              {
+                hasRole(currentUser, "ROLE_ADMIN" || "ROLE_DRIVER") && (
+                  <NavDropdown title="Chat" id="appnavbar-Chat-dropdown" data-testid="appnavbar-Chat-dropdown" >
+                    <NavDropdown.Item as={Link} to="/chat">Users</NavDropdown.Item>
+                  </NavDropdown>
+                )
+              }
             </Nav>
 
             <Nav className="ml-auto">

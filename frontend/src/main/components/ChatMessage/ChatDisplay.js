@@ -34,6 +34,7 @@ const ChatDisplay = () => {
 
   const previousPageCallback = () => {
     setSelectedPage(selectedPage - 1);
+    
   };
 
   const nextPageCallback = () => {

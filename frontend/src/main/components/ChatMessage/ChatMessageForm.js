@@ -42,20 +42,20 @@ function ChatMessageForm({ initialContents, submitAction, buttonLabel = "Create"
 
 
             <Form.Group className="mb-3" >
-                <Form.Label htmlFor="Content">Message Content</Form.Label>
+                <Form.Label htmlFor="content">Message Content</Form.Label>
                 <Form.Control
-                    data-testid={testIdPrefix + "-Content"}
-                    id="Content"
+                    data-testid={testIdPrefix + "-content"}
+                    id="content"
                     type="text"
                     isInvalid={Boolean(errors.Content)}
-                    {...register("Content", {
+                    {...register("content", {
                         required: "Content is required.",
                     })}
                     placeholder="Message"
-                    defaultValue={initialContents?.Content}
+                    defaultValue={initialContents?.content}
                 />
                 <Form.Control.Feedback type="invalid">
-                    {errors.Content?.message}
+                    {errors.content?.message}
                 </Form.Control.Feedback>
             </Form.Group>
 
