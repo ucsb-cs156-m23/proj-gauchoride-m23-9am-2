@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import ChatPanel from "main/components/ChatMessage/ChatPanel";
 import { firstPagedChatFixtures, secondPagedChatFixtures, thirdPagedChatFixtures } from "fixtures/chatMessageFixtures";
 import { QueryClient, QueryClientProvider } from "react-query";
