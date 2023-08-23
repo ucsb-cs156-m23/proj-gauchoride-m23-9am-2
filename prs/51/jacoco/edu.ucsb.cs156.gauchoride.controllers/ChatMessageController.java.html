@@ -66,8 +66,10 @@ import javax.validation.Valid;
          @Parameter(name=&quot;page&quot;) @RequestParam int page,
          @Parameter(name=&quot;size&quot;) @RequestParam int size
     ) {
-<span class="fc" id="L69">        Page&lt;ChatMessage&gt; messages = chatMessageRepository.findAll(PageRequest.of(page, size, Sort.by(&quot;timestamp&quot;).ascending()));</span>
-<span class="fc" id="L70">        return messages;</span>
+
+<span class="fc" id="L70">        Page&lt;ChatMessage&gt; messages = chatMessageRepository.findAll(PageRequest.of(page, size, Sort.by(&quot;timestamp&quot;).ascending()));</span>
+
+<span class="fc" id="L72">        return messages;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
