@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for pages/Ride/RideRequestCreatePage.js</title>
+    <title>Code coverage report for pages/Shift/ShiftCreatePage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Ride</a> RideRequestCreatePage.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">pages/Shift</a> ShiftCreatePage.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
@@ -138,10 +138,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
@@ -169,60 +168,61 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import RideForm from "main/components/Ride/RideForm";
+import ShiftForm from "main/components/Shift/ShiftForm";
 import { Navigate } from 'react-router-dom'
 import { useBackendMutation } from "main/utils/useBackend";
 import { toast } from "react-toastify";
 &nbsp;
-export default function RideRequestCreatePage() {
+export default function ShiftCreatePage({storybook=false}) {
 &nbsp;
-    const objectToAxiosParams = (ride) =&gt; ({
-        url: "/api/ride_request/post",
+    const objectToAxiosParams = (shift) =&gt; ({
+        url: "/api/shift/post",
         method: "POST",
         params: {
-            day: ride.day,
-            startTime: ride.start,
-            endTime: ride.end, 
-            pickupBuilding: ride.pickupBuilding,
-            dropoffBuilding: ride.dropoffBuilding,
-            dropoffRoom: ride.dropoffRoom,
-            pickupRoom: ride.pickupRoom,
-            course: ride.course,
-            notes: ride.notes
+            day: shift.day,
+            driverBackupID: shift.driverBackupID,
+            driverID: shift.driverID,
+            id: shift.id,
+            shiftEnd: shift.shiftEnd,
+            shiftStart: shift.shiftStart,
         }
     });
+    
 &nbsp;
-    const onSuccess = (ride) =&gt; {
-        toast(`New Ride Created - id: ${ride.id}`);
+    const onSuccess = (shift) =&gt; {
+        toast(`New shift Created - id: ${shift.id}, day: ${shift.day}, shiftStart: ${shift.shiftStart}, shiftEnd: ${shift.shiftEnd}, driverID: ${shift.driverID}, driverBackupID: ${shift.driverBackupID}`);
     }
+    
 &nbsp;
-    const mutation = useBackendMutation(
-        objectToAxiosParams,
-        { onSuccess },
-        // Stryker disable next-line all : hard to set up test for caching
-        ["/api/ride_request/all"]
-    );
+  const mutation = useBackendMutation(
+    objectToAxiosParams,
+     { onSuccess }, 
+     // Stryker disable next-line all : hard to set up test for caching
+     ["/api/shift/all"] // mutation makes this key stale so that pages relying on it reload
+     );
 &nbsp;
-    const { isSuccess } = mutation
+  const { isSuccess } = mutation
 &nbsp;
-    const onSubmit = async (data) =&gt; {
-        mutation.mutate(data);
-    }
+  const onSubmit = async (data) =&gt; {
+    mutation.mutate(data);
+  }
 &nbsp;
-    if (isSuccess) {
-        return &lt;Navigate to="/ride/" /&gt;
-    }
+  if (isSuccess &amp;&amp; !storybook) {
+    return &lt;Navigate to="/shift" /&gt;
+  }
 &nbsp;
-    return (
-        &lt;BasicLayout&gt;
-        &lt;div className="pt-2"&gt;
-            &lt;h1&gt;Submit New Ride Request&lt;/h1&gt;
-            &lt;RideForm submitAction={onSubmit} /&gt;
-        &lt;/div&gt;
-        &lt;/BasicLayout&gt;
-    )
-}</pre></td></tr></table></pre>
+  return (
+    &lt;BasicLayout&gt;
+      &lt;div className="pt-2"&gt;
+        &lt;h1&gt;Create New Shift&lt;/h1&gt;
+        &lt;ShiftForm submitAction={onSubmit} /&gt;
+      &lt;/div&gt;
+    &lt;/BasicLayout&gt;
+  )
+}
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
