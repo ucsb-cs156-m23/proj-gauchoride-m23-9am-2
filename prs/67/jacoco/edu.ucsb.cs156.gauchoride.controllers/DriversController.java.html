@@ -39,15 +39,15 @@ import io.swagger.v3.oas.annotations.Parameter;
     public ResponseEntity&lt;String&gt; drivers()
             throws JsonProcessingException {
 
-                Iterable&lt;User&gt; drivers;
+<span class="fc" id="L42">                Iterable&lt;User&gt; drivers=userRepository.findByDriver(true);</span>
 
                 
-<span class="nc" id="L45">                    drivers=userRepository.findByDriver(true); </span>
+                
                 
 
                 
-<span class="nc" id="L49">        String body = mapper.writeValueAsString(drivers);</span>
-<span class="nc" id="L50">        return ResponseEntity.ok().body(body);</span>
+<span class="fc" id="L49">        String body = mapper.writeValueAsString(drivers);</span>
+<span class="fc" id="L50">        return ResponseEntity.ok().body(body);</span>
     }
 
 
