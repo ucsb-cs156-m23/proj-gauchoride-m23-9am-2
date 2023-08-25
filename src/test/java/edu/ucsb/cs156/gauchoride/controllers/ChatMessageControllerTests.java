@@ -3,6 +3,7 @@ package edu.ucsb.cs156.gauchoride.controllers;
 import edu.ucsb.cs156.gauchoride.ControllerTestCase;
 import edu.ucsb.cs156.gauchoride.entities.ChatMessage;
 import edu.ucsb.cs156.gauchoride.entities.Ride;
+import edu.ucsb.cs156.gauchoride.entities.User;
 import edu.ucsb.cs156.gauchoride.repositories.ChatMessageRepository;
 import edu.ucsb.cs156.gauchoride.repositories.UserRepository;
 import edu.ucsb.cs156.gauchoride.testconfig.TestConfig;
@@ -51,16 +52,18 @@ public class ChatMessageControllerTests extends ControllerTestCase{
         @Test
         public void admin_can_get_messages() throws Exception {
 
+
+                User user = currentUserService.getCurrentUser().getUser();
                 // arrange
 
                 PageRequest pageRequest = PageRequest.of(0, 5);
 
                 ChatMessage message1 = ChatMessage.builder()
-                    .userId(1)
+                    .user(user)
                     .payload("message2")
                     .build();
                 ChatMessage message2 = ChatMessage.builder()
-                    .userId(1)
+                    .user(user)
                     .payload("message2")
                     .build();
 
@@ -91,14 +94,17 @@ public class ChatMessageControllerTests extends ControllerTestCase{
 
                 // arrange
 
+                User user = currentUserService.getCurrentUser().getUser();
+
+
                 PageRequest pageRequest = PageRequest.of(0, 5);
 
                 ChatMessage message1 = ChatMessage.builder()
-                    .userId(1)
+                   .user(user)
                     .payload("message2")
                     .build();
                 ChatMessage message2 = ChatMessage.builder()
-                    .userId(1)
+                   .user(user)
                     .payload("message2")
                     .build();
 
@@ -128,10 +134,12 @@ public class ChatMessageControllerTests extends ControllerTestCase{
         public void an_admin_can_post_a_new_message() throws Exception {
                 // arrange
 
-                long userId = currentUserService.getCurrentUser().getUser().getId();
+                User user = currentUserService.getCurrentUser().getUser();
+
+
 
                 ChatMessage message1 = ChatMessage.builder()
-                        .userId(userId)
+                       .user(user)
                         .payload("message1")
                         .build();
 
@@ -147,7 +155,7 @@ public class ChatMessageControllerTests extends ControllerTestCase{
 
                 // assert
                 verify(chatMessageRepository, times(1)).save(message1);
-                String expectedJson = "{\"id\":0,\"userId\":1,\"payload\":\"message1\",\"timestamp\":null,\"dm\":false,\"toUserId\":null}";
+                String expectedJson = "{\"id\":0,\"user\":{\"id\":1,\"email\":\"user@example.org\",\"googleSub\":\"fake_user\",\"pictureUrl\":\"https://example.org/user.jpg\",\"fullName\":\"Fake user\",\"givenName\":\"Fake\",\"familyName\":\"user\",\"emailVerified\":true,\"locale\":\"\",\"hostedDomain\":\"example.org\",\"cellPhone\":null,\"admin\":false,\"driver\":false,\"rider\":false},\"payload\":\"message1\",\"timestamp\":null,\"dm\":false,\"toUserId\":null}";
                 String responseString = response.getResponse().getContentAsString();
                 responseString  = responseString.replace("\"toUserId\":0", "\"toUserId\":null");
                 assertEquals(expectedJson, responseString);
@@ -159,10 +167,11 @@ public class ChatMessageControllerTests extends ControllerTestCase{
         public void a_driver_can_post_a_new_message() throws Exception {
                 // arrange
 
-                long userId = currentUserService.getCurrentUser().getUser().getId();
+
+                User user = currentUserService.getCurrentUser().getUser();
 
                 ChatMessage message1 = ChatMessage.builder()
-                        .userId(userId)
+                       .user(user)
                         .payload("message1")
                         .build();
 
@@ -183,10 +192,5 @@ public class ChatMessageControllerTests extends ControllerTestCase{
                 
                 assertEquals(expectedJson, responseString);
         }
-
-
-    
-
-
 
 }

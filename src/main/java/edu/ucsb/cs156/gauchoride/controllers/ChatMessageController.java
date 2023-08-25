@@ -51,7 +51,7 @@ public class ChatMessageController extends ApiController {
 
         ChatMessage message = new ChatMessage();
         
-        message.setUserId(getCurrentUser().getUser().getId());
+        message.setUser(getCurrentUser().getUser());
         message.setPayload(content);
 
         ChatMessage savedMessage = chatMessageRepository.save(message);
