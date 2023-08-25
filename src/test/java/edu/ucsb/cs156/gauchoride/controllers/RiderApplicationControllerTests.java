@@ -40,7 +40,18 @@ public class RiderApplicationControllerTests extends ControllerTestCase {
         @MockBean
         UserRepository userRepository;
 
+        @Test
+        public void logged_out_users_cannot_get_all() throws Exception {
+                mockMvc.perform(get("/api/rider/all"))
+                                .andExpect(status().is(403)); // logged out users can't get all
+        }
 
+        @WithMockUser(roles = { "DRIVER" })
+        @Test
+        public void logged_in_driver_can_get_all() throws Exception {
+                mockMvc.perform(get("/api/rider/all"))
+                                .andExpect(status().is(403)); // logged
+        }
 
 
         @WithMockUser(roles = { "ADMIN" })
@@ -50,3 +61,5 @@ public class RiderApplicationControllerTests extends ControllerTestCase {
                                 .andExpect(status().is(200)); // logged
         }
     }
+
+    

@@ -32,7 +32,6 @@ public class RiderApplicationController extends ApiController {
 
     @Autowired
     RiderApplicationRepository riderApplicationRepository;
-
     @Operation(summary = "List all rides for admins only")
     @PreAuthorize("hasRole('ROLE_ADMIN') ")
     @GetMapping("/all")
@@ -47,3 +46,5 @@ public class RiderApplicationController extends ApiController {
 return riderApplications;
 }
 }
+
+
