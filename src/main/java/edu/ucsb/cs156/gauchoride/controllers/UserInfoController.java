@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.ucsb.cs156.gauchoride.entities.User;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import edu.ucsb.cs156.gauchoride.models.CurrentUser;
-import edu.ucsb.cs156.gauchoride.services.CurrentUserService;
+import edu.ucsb.cs156.gauchoride.views.Views;
 
 @Tag(name="Current User Information")
 @RequestMapping("/api/currentUser")

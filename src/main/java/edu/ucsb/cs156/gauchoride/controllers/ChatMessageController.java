@@ -4,7 +4,7 @@ import edu.ucsb.cs156.gauchoride.entities.ChatMessage;
 import edu.ucsb.cs156.gauchoride.entities.User;
 import edu.ucsb.cs156.gauchoride.errors.EntityNotFoundException;
 import edu.ucsb.cs156.gauchoride.repositories.ChatMessageRepository;
-
+import edu.ucsb.cs156.gauchoride.views.Views;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -26,10 +26,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Sort;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import javax.validation.Valid;
-
 
 @Tag(name = "Chat Message")
 @RequestMapping("/api/chat")
@@ -44,13 +44,10 @@ public class ChatMessageController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_DRIVER')")
     @PostMapping("/post")
     public ChatMessage postMessage(
-        @Parameter(name="content", description="The message you want to send", example="Hi", required = true)
-        @RequestParam String content
-        )
-        {
+            @Parameter(name = "content", description = "The message you want to send", example = "Hi", required = true) @RequestParam String content) {
 
         ChatMessage message = new ChatMessage();
-        
+
         message.setUser(getCurrentUser().getUser());
         message.setPayload(content);
 
@@ -59,14 +56,37 @@ public class ChatMessageController extends ApiController {
         return savedMessage;
     }
 
-    @Operation(summary = "List all messages")
+    @Operation(summary = "List all messages (paged)")
     @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_DRIVER')")
+    @JsonView(Views.Public.class)
     @GetMapping("/get")
     public Page<ChatMessage> allMessages(
-         @Parameter(name="page") @RequestParam int page,
-         @Parameter(name="size") @RequestParam int size
+            @Parameter(name = "page") @RequestParam int page,
+            @Parameter(name = "size") @RequestParam int size) {
+        Page<ChatMessage> messages = chatMessageRepository
+                .findAll(PageRequest.of(page, size, Sort.by("timestamp").ascending()));
+        return messages;
+    }
+
+    @Operation(summary = "List all messages (not paged)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_DRIVER')")
+    @JsonView(Views.Public.class)
+    @GetMapping("/getNonPaged")
+    public Iterable<ChatMessage> allMessages() {
+        Iterable<ChatMessage> messages = chatMessageRepository.findAll();
+        return messages;
+    }
+
+    @Operation(summary = "List all messages (not paged)")
+    @PreAuthorize("hasRole('ROLE_ADMIN') || hasRole('ROLE_DRIVER')")
+    @JsonView(Views.Public.class)
+    @GetMapping("/tryThing")
+    public Iterable<ChatMessage> allMessagesNewThing(
+            @Parameter(name = "page") @RequestParam int page,
+            @Parameter(name = "size") @RequestParam int size
     ) {
-        Page<ChatMessage> messages = chatMessageRepository.findAll(PageRequest.of(page, size, Sort.by("timestamp").ascending()));
+        Page<ChatMessage> messages = chatMessageRepository
+                .tryNewQuery(PageRequest.of(page, size, Sort.by("timestamp").ascending()));
         return messages;
     }
 }

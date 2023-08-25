@@ -9,7 +9,10 @@ import lombok.AccessLevel;
 
 import org.springframework.security.core.GrantedAuthority;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 import edu.ucsb.cs156.gauchoride.entities.User;
+import edu.ucsb.cs156.gauchoride.views.Views;
 
 import java.util.Collection;
 
