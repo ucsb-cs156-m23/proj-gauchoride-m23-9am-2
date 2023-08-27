@@ -28,7 +28,6 @@ public class User {
   private boolean emailVerified;
   private String locale;
   private String hostedDomain;
-  private String cellPhone;
   @Builder.Default
   private boolean admin=false;
   @Builder.Default

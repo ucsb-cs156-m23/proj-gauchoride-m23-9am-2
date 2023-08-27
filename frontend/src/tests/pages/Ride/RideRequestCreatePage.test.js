@@ -58,12 +58,10 @@ describe("RideRequestCreatePage tests", () => {
             day: "Monday",
             startTime: "3:30PM",
             endTime: "4:30PM", 
-            pickupBuilding: "Phelps",
-            dropoffBuilding: "HSSB",
-            dropoffRoom: "1215",
-            pickupRoom: "1215",
-            course: "WRIT 105CD",
-            notes: ""
+            pickupLocation: "Phelps",
+            dropoffLocation: "HSSB",
+            room: "1215",
+            course: "WRIT 105CD"
         };
 
         axiosMock.onPost("/api/ride_request/post").reply( 202, ride );
@@ -83,23 +81,19 @@ describe("RideRequestCreatePage tests", () => {
         const dayField = getByTestId("RideForm-day");
         const startTimeField = getByTestId("RideForm-start");
         const endTimeField = getByTestId("RideForm-end");
-        const pickupBuildingField = getByTestId("RideForm-pickupBuilding");
-        const dropoffBuildingField = getByTestId("RideForm-dropoffBuilding");
-        const dropoffRoomField = getByTestId("RideForm-dropoffRoom");
-        const pickupRoomField = getByTestId("RideForm-pickupRoom");
+        const pickupLocationField = getByTestId("RideForm-pickup");
+        const dropoffLocationField = getByTestId("RideForm-dropoff");
+        const roomField = getByTestId("RideForm-room");
         const courseField = getByTestId("RideForm-course");
-        const notesField = getByTestId("RideForm-notes");
         const submitButton = getByTestId("RideForm-submit");
 
         fireEvent.change(dayField, { target: { value: 'Monday' } });
         fireEvent.change(startTimeField, { target: { value: '3:30PM' } });
         fireEvent.change(endTimeField, { target: { value: '4:30PM' } });
-        fireEvent.change(pickupBuildingField, { target: { value: 'Phelps' } });
-        fireEvent.change(dropoffBuildingField, { target: { value: 'HSSB' } });
-        fireEvent.change(dropoffRoomField, { target: { value: '1215' } });
-        fireEvent.change(pickupRoomField, { target: { value: '1216' } });
+        fireEvent.change(pickupLocationField, { target: { value: 'Phelps' } });
+        fireEvent.change(dropoffLocationField, { target: { value: 'HSSB' } });
+        fireEvent.change(roomField, { target: { value: '1215' } });
         fireEvent.change(courseField, { target: { value: 'WRIT 105CD' } });
-        fireEvent.change(notesField, { target: { value: '2 people' } });
 
 
         expect(submitButton).toBeInTheDocument();
@@ -113,12 +107,10 @@ describe("RideRequestCreatePage tests", () => {
                 "day": "Monday",
                 "startTime": "3:30PM",
                 "endTime": "4:30PM", 
-                "pickupBuilding": "Phelps",
-                "dropoffBuilding": "HSSB",
-                "dropoffRoom": "1215",
-                "pickupRoom" : "1216",
-                "course": "WRIT 105CD",
-                "notes" : "2 people"
+                "pickupLocation": "Phelps",
+                "dropoffLocation": "HSSB",
+                "room": "1215",
+                "course": "WRIT 105CD"
         });
 
         expect(mockToast).toBeCalledWith("New Ride Created - id: 17");
