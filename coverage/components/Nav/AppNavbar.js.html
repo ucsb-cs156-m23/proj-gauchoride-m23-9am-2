@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>29/29</span>
+                <span class='fraction'>31/31</span>
             </div>
         
             
@@ -192,14 +192,17 @@
 <a name='L127'></a><a href='#L127'>127</a>
 <a name='L128'></a><a href='#L128'>128</a>
 <a name='L129'></a><a href='#L129'>129</a>
-<a name='L130'></a><a href='#L130'>130</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">436x</span>
+<span class="cline-any cline-yes">446x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,28 +210,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">218x</span>
+<span class="cline-any cline-yes">223x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">64x</span>
-<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-yes">66x</span>
+<span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">20x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">218x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">223x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">218x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">223x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -367,7 +373,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
 &nbsp;
       &lt;Navbar expand="xl" variant="dark" sticky="top" data-testid="AppNavbar" style={styles.navbar}&gt;
         &lt;Container&gt;
-        &lt;img data-testid="gauchoride-nav-logo" src={headerImg} alt="" style={{width: 80, height: 80, marginRight: 15}} /&gt;
+          &lt;img data-testid="gauchoride-nav-logo" src={headerImg} alt="" style={{ width: 80, height: 80, marginRight: 15 }} /&gt;
 &nbsp;
           &lt;Navbar.Brand as={Link} to="/"&gt;
             GauchoRide
@@ -414,7 +420,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 isParticipant(currentUser) &amp;&amp; (
                   &lt;NavDropdown title="Ride Request" id="appnavbar-ride-dropdown" data-testid="appnavbar-ride-dropdown" &gt;
                     &lt;NavDropdown.Item data-testid="appnavbar-ride-dropdown-rides" as={Link} to="/ride/"&gt;Rides&lt;/NavDropdown.Item&gt;
-                    { createRideRequest(currentUser) }
+                    {createRideRequest(currentUser)}
                   &lt;/NavDropdown&gt;
                 )
               }
@@ -423,6 +429,13 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                   &lt;NavDropdown title="Chat" id="appnavbar-chat-dropdown" data-testid="appnavbar-chat-dropdown" &gt;
                     &lt;NavDropdown.Item as={Link} to="/chat"&gt;Chat&lt;/NavDropdown.Item&gt;
                   &lt;/NavDropdown&gt;
+                )
+              }
+              {
+                hasRole(currentUser, "ROLE_DRIVER") &amp;&amp; (
+                  &lt;&gt;
+                    &lt;Nav.Link href="/drivers"&gt;Drivers&lt;/Nav.Link&gt;
+                  &lt;/&gt;
                 )
               }
             &lt;/Nav&gt;
@@ -440,10 +453,6 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 )
               }
             &lt;/Nav&gt;
-&nbsp;
-            
-              
-            
           &lt;/Navbar.Collapse&gt;
         &lt;/Container &gt;
       &lt;/Navbar &gt;
@@ -457,7 +466,7 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at Sat Aug 26 2023 19:26:37 GMT-0700 (Pacific Daylight Time)
+                at Sat Aug 26 2023 20:18:09 GMT-0700 (Pacific Daylight Time)
             </div>
         <script src="../../prettify.js"></script>
         <script>
