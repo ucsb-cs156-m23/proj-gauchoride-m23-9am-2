@@ -1,6 +1,7 @@
 import OurTable from "main/components/OurTable"
 
 
+
 const columns = [
     {
         Header: 'id',
@@ -25,6 +26,7 @@ const columns = [
 ];
 
 export default function DriverShiftsTable({ drivershifts }) {
+
     return <OurTable
         data={drivershifts}
         columns={columns}
